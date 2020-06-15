@@ -1,9 +1,9 @@
-package lxl;
+package lxl.LinkedListTest;
 
-import sun.swing.plaf.windows.ClassicSortArrowIcon;
+import java.util.Stack;
 
 /**
- * 链表倒叙
+ * 链表倒叙（反转链表）
  */
 public class LinkListReverse {
     public static class Node {
@@ -19,9 +19,8 @@ public class LinkListReverse {
             this.next = next;
         }
     }
-
+   //遍历方法
     public static Node reverse(Node head) {
-        //若输入head是null 或者这个链表只有一个元素
         //若输入head是null 或者这个链表只有一个元素,不需要反转
         //null -->null
         //a,null-->a,null
@@ -46,6 +45,18 @@ public class LinkListReverse {
         return node;
     }
 
+    //使用栈实现反转
+    public static Node reverse2(Node head){
+        Stack<Integer> stack=new Stack();
+        if(head==null||head.next==null){
+            return head;
+        }
+        while (head!=null){
+         //TODO
+        }
+        return head;
+    }
+
     public static void main(String[] args) {
         Node node = new Node(4);
         node = new Node(3, node);
@@ -60,7 +71,7 @@ public class LinkListReverse {
 //        System.out.println(node.next.val);
 //        System.out.println(node.next.next.val);
 //        Node head = reverse(node);
-        Node head=reverse1(node);
+        Node head=reverse(node);
         Node tmpReverse=head;
         while(tmpReverse!=null){
             System.out.print(tmpReverse.val+" ");

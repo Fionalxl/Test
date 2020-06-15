@@ -1,4 +1,4 @@
-package lxl;
+package lxl.ThreadTest;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -44,27 +44,27 @@ public class CountDownLatchDemo {
 }
 
 class Foo {
-    private CountDownLatch l1;
-    private CountDownLatch l2;
+   private CountDownLatch l1;
+   private CountDownLatch l2;
 
-    public Foo() {
-        l1 = new CountDownLatch(1);
-        l2 = new CountDownLatch(1);
-    }
+   public Foo() {
+       l1 = new CountDownLatch(1);
+       l2 = new CountDownLatch(1);
+   }
 
-    public void one(Runnable runnable) {
-        runnable.run();
-        l1.countDown();
-    }
+   public void one(Runnable runnable) {
+       runnable.run();
+       l1.countDown();
+   }
 
-    public void two(Runnable runnable) throws InterruptedException {
-        l1.await();
-        runnable.run();
-        l2.countDown();
-    }
+   public void two(Runnable runnable) throws InterruptedException {
+       l1.await();
+       runnable.run();
+       l2.countDown();
+   }
 
-    public void three(Runnable runnable) throws InterruptedException {
-        l2.await();
-        runnable.run();
-    }
+   public void three(Runnable runnable) throws InterruptedException {
+       l2.await();
+       runnable.run();
+   }
 }
