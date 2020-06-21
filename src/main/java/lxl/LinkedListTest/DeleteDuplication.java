@@ -40,6 +40,10 @@ public class DeleteDuplication {
 
     //删除重复的结点，不保留
     // 一：递归实现
+    /**
+     * @param args
+     * 还存在问题，Todo
+     */
     public static ListNode deleteDuplication_2(ListNode pHead) {
         // 递归停止条件
         if (pHead == null || pHead.next == null)
@@ -60,6 +64,10 @@ public class DeleteDuplication {
     }
 
     //二：循环实现
+    /**
+     * @param args
+     * 还存在问题，Todo
+     */
     public static ListNode deleteDuplication_3(ListNode head) {
         if (head == null || head.next == null) return head;
         ListNode pPreNode = null;
@@ -90,10 +98,7 @@ public class DeleteDuplication {
         return head;
     }
 
-    /**
-     * @param args
-     * 还存在问题，Todo
-     */
+
     public static void main(String[] args){
         ListNode node1=new ListNode(1);
         ListNode node2=new ListNode(2);
@@ -107,11 +112,11 @@ public class DeleteDuplication {
         node4.next=node5;
         node5.next=node6;
         node6.next=null;
-        while (node1!=null){
-            System.out.println(node1.val+" ");
-            node1=node1.next;
-        }
-       ListNode m=deleteDuplication_1(node1);
+//        while (node1!=null){
+//            System.out.println(node1.val+" ");
+//            node1=node1.next;
+//        }
+       ListNode m=deleteDuplication_2(node1);
         while (m!=null){
             System.out.println(m.val+" ");
             m=m.next;
