@@ -2,6 +2,7 @@ package lxl.Others;
 
 /**
  * Created by lanxiaoli on 2020/4/19.
+ * 二进制中1的个数
  */
 public class binaryTest {
     public static void main(String args[]){
