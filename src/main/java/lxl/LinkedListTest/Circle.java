@@ -20,7 +20,7 @@ public class Circle {
         }
         ListNode slow=node.next;
         ListNode quick=node.next.next;
-        while (quick!=null) {
+        while (quick!=null&&quick.next!=null) {
             if (slow == quick)
                 return true;
             slow=slow.next;
@@ -35,7 +35,7 @@ public class Circle {
         }
         ListNode slow=node.next;
         ListNode quick=node.next.next;
-        while (quick!=null) {
+        while (quick!=null&quick.next!=null) {
             if (slow == quick) break;
             slow=slow.next;
             quick=quick.next.next;
@@ -45,7 +45,7 @@ public class Circle {
         while (quick!=null){
             if(quick==slow) return slow;
             slow=slow.next;
-            quick=quick.next;
+            node=node.next;
         }
         return null;
     }

@@ -1,5 +1,7 @@
 package lxl.TreeTest;
 
+import java.util.Stack;
+
 /**
  * Created by lanxiaoli on 2020/6/10.
  * 二叉树镜像
@@ -24,6 +26,29 @@ public class MirrorRecursively {
             mirrorRecursively(pNode.right);
         }
     }
-
+//非递归方法
+    public void mirrorRecursively1(BinaryTreeNode pNode) {
+        if (pNode == null) {
+            return;
+        }
+        Stack<BinaryTreeNode> stack = new Stack<>();
+        stack.push(pNode);
+        while (!stack.isEmpty()) {
+            BinaryTreeNode treeNode = stack.pop();
+            if (treeNode.left != null || treeNode.right != null) {
+                BinaryTreeNode tempNode = treeNode.left;
+                treeNode.left = treeNode.right;
+                treeNode.right = tempNode;
+            }
+            if (treeNode.left != null) {
+                stack.push(treeNode.left);
+            }
+            if (treeNode.right != null) {
+                stack.push(treeNode.right);
+            }
+        }
+    }
 
 }
+
+

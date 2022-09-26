@@ -15,9 +15,10 @@ public class DeleteDuplication {
         ListNode(int val) {
             this.val = val;
         }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
     //删除重复的结点，保留一个
-    //map实现
+    //map实现,O(n)
     public static ListNode deleteDuplication_1(ListNode head) {
         if (head == null || head.next == null) return head;
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -37,6 +38,25 @@ public class DeleteDuplication {
         }
         return newhead.next;
     }
+
+    //方法二：一次遍历
+    public ListNode deleteDuplicates1(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+
+        ListNode cur = head;
+        while (cur.next != null) {
+            if (cur.val == cur.next.val) {
+                cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
+            }
+        }
+
+        return head;
+    }
+
 
     //删除重复的结点，不保留
     // 一：递归实现
@@ -63,22 +83,19 @@ public class DeleteDuplication {
         }
     }
 
-    //二：循环实现
-    /**
-     * @param args
-     * 还存在问题，Todo
-     */
-    public static ListNode deleteDuplication_3(ListNode head) {
-        if (head == null || head.next == null) return head;
+
+    //二：循环实现，对于连续出现的重复数字有效，若重复的数字不是连续出现，无用
+    public static ListNode deleteDuplication_4(ListNode pHead) {
+        if (pHead == null || pHead.next == null)
+            return pHead;
         ListNode pPreNode = null;
-        ListNode pNode = head;
-        boolean needDel = false;
-        ListNode pNext = pNode.next;
+        ListNode pNode = pHead;
         while (pNode != null) {
-            if (pNext != null && pNode.val == pNext.val) {
-                needDel = true;
-            }
-            if (!needDel) {
+            ListNode pNext = pNode.next;
+            boolean needDelete = false;
+            if (pNext != null && pNext.val == pNode.val)
+                needDelete = true;
+            if (!needDelete) {
                 pPreNode = pNode;
                 pNode = pNode.next;
             } else {
@@ -89,21 +106,45 @@ public class DeleteDuplication {
                     pToBeDel = pNext;
                 }
                 if (pPreNode == null)
-                    head = pNext;
+                    pHead = pNext;
                 else
                     pPreNode.next = pNext;
                 pNode = pNext;
             }
         }
-        return head;
+        return pHead;
     }
+
+    //方法三：一次遍历
+    public static ListNode deleteDuplicates(ListNode head) {
+            if (head == null) {
+                return head;
+            }
+
+            ListNode dummy = new ListNode(0, head);
+
+            ListNode cur = dummy;
+            while (cur.next != null && cur.next.next != null) {
+                if (cur.next.val == cur.next.next.val) {
+                    int x = cur.next.val;
+                    while (cur.next != null && cur.next.val == x) {
+                        cur.next = cur.next.next;
+                    }
+                } else {
+                    cur = cur.next;
+                }
+            }
+
+            return dummy.next;
+        }
+
 
 
     public static void main(String[] args){
         ListNode node1=new ListNode(1);
         ListNode node2=new ListNode(2);
         ListNode node3=new ListNode(2);
-        ListNode node4=new ListNode(3);
+        ListNode node4=new ListNode(2);
         ListNode node5=new ListNode(4);
         ListNode node6=new ListNode(4);
         node1.next=node2;
@@ -116,7 +157,7 @@ public class DeleteDuplication {
 //            System.out.println(node1.val+" ");
 //            node1=node1.next;
 //        }
-       ListNode m=deleteDuplication_2(node1);
+       ListNode m=deleteDuplicates(node1);
         while (m!=null){
             System.out.println(m.val+" ");
             m=m.next;

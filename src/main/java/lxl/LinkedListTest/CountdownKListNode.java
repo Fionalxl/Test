@@ -54,8 +54,7 @@ public class CountdownKListNode {
         ln7.val = 7;
         ln8.val = 8;
         CountdownKListNode m=new CountdownKListNode();
-        m.countdownKListNode(ln1,4);
-        System.out.println( m.countdownKListNode(ln1,4).val);
+        System.out.println( m.countdownKListNode(ln1,1).val);
 
     }
 

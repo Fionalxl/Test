@@ -1,11 +1,7 @@
 package lxl.TreeTest;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by lanxiaoli on 2020/6/15.
@@ -20,8 +16,9 @@ public class ZigzagLevelOrder {
         BinaryTreeNode right;
     }
     public List<List<Integer>> zigzagLevelOrder(BinaryTreeNode root){
-        if(root==null) return null;
-        List<List<Integer>> res=new VirtualFlow.ArrayLinkedList<>();
+        List<List<Integer>> res=new LinkedList<List<Integer>>();
+        if(root==null) return res;
+
         Queue<BinaryTreeNode> queue=new LinkedList<>();
         queue.add(root);
         int i=1;

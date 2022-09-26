@@ -1,5 +1,6 @@
 package lxl.ThreadTest;
 
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.CountDownLatch;
 
 /**
